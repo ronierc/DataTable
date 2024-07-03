@@ -17,7 +17,7 @@ export function loadStylesAndScripts(cssUrls, jsUrls) {
             link.rel = "stylesheet";
             link.href = url;
             link.onload = onLoad;
-            link.onerror = () => reject(new Error(`Failed to load CSS: ${url}`));
+            link.onerror = () => reject(new Error(`Falha ao Carregar CSS: ${url}`));
             document.head.appendChild(link);
         });
 
@@ -29,7 +29,7 @@ export function loadStylesAndScripts(cssUrls, jsUrls) {
             const script = document.createElement("script");
             script.src = jsUrls[index];
             script.onload = () => loadJsScriptsSequentially(index + 1);
-            script.onerror = () => reject(new Error(`Failed to load JS: ${jsUrls[index]}`));
+            script.onerror = () => reject(new Error(`Falha ao Carregar JS: ${jsUrls[index]}`));
             document.head.appendChild(script);
         };
 

@@ -34,15 +34,17 @@ export async function datatable (paramTable) {
     var columnBtnEdit = {
         data: null,
         title: "Ações",
-        orderable: false, searchable: false, width: '40px',
+        orderable: false, searchable: false, width: '80px',
         responsivePriority: 5, 
         render: (data, type, full, meta) => {
             return `<span class="action"> 
-                    <a class="edit" href="${paramTable.idTable}/alterar/${full.seo_url}" title="Visualizar/Editar">Edit</a>
+                    <a class="edit" href="${paramTable.idTable}/alterar/${data[table.settings().init().columns[0].data]}" title="Visualizar/Editar"><i class="bi bi-pencil"></i></a>
                 </span>`;
         }
     };
     paramTable.columnsTable.push(columnBtnEdit);
+
+
 
     var table = $(`#dt-${paramTable.idTable}`).DataTable({
         ajax: function(data, callback, settings) {
@@ -91,5 +93,6 @@ export async function datatable (paramTable) {
         consulta = $('#consultaInput').val().trim(); // Obtém o valor do campo de entrada e remove espaços em branco extras
         table.ajax.reload(); // Recarrega os dados da tabela com base no novo valor da consulta
     });
-    
+
+
 }
